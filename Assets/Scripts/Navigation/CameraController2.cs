@@ -22,22 +22,22 @@ public class CameraController2 : MonoBehaviour
 
 		if (Input.GetKey(KeyCode.A))
 		{
-			pos.x -= 10 * Time.deltaTime;
+			pos.z -= 20 * Time.deltaTime;
 		}
 			
 		if (Input.GetKey(KeyCode.D))
 		{
-			pos.x += 10 * Time.deltaTime;
+			pos.z += 20 * Time.deltaTime;
 		}
 			
 		if (Input.GetKey(KeyCode.W))
 		{
-			pos.z += 10 * Time.deltaTime;
+			pos.x += 20 * Time.deltaTime;
 		}
 			
 		if (Input.GetKey(KeyCode.S))
 		{
-			pos.z -= 10 * Time.deltaTime;
+			pos.x -= 20 * Time.deltaTime;
 		}
 			
 		transform.position = pos;	
