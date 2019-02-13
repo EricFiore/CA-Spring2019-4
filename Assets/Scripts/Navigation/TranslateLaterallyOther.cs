@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TranslateLaterally : MonoBehaviour
+public class TranslateLaterallyOther : MonoBehaviour
 {
     private float beginTime;
     private float lengthOfMovement;
@@ -24,6 +24,7 @@ public class TranslateLaterally : MonoBehaviour
         staticStartPosition = startPosition.position;           //mark start obstacle position
         staticEndPosition = endPosition.position;               //mark end position
         lengthOfMovement = Vector3.Distance(startPosition.position, endPosition.position);
+        Debug.Log("lengthOfMovement is " + lengthOfMovement + " begin time is " + beginTime);
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class TranslateLaterally : MonoBehaviour
         if (!atEnd)
         {
             transform.position = Vector3.Lerp(startPosition.position, endPosition.position, percentageMovementCompleted);
-            if (transform.position.z >= finalZPosition - 0.001)
+            if (transform.position.z <= finalZPosition + 0.001)
             {
                 atEnd = true;
                 endPosition.position = staticStartPosition;           //move end goal object to starting position so obstacle will follow back
@@ -44,7 +45,7 @@ public class TranslateLaterally : MonoBehaviour
         else if (atEnd)
         {
             transform.position = Vector3.Lerp(startPosition.position, endPosition.position, percentageMovementCompleted);
-            if (transform.position.z <= initialZPostion + 0.001)
+            if (transform.position.z >= initialZPostion - 0.001)
             {
                 atEnd = false;
                 endPosition.position = staticEndPosition;
