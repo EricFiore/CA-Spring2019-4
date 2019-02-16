@@ -13,12 +13,18 @@ public class AllPlayerController : MonoBehaviour
     private bool playerThreeSelected;
     private bool playerFourSelected;
     private bool playerFiveSelected;
+    private bool barrelOneSelected;
+    private bool barrelTwoSelected;
+    private bool barrelThreeSelected;
     private MeshRenderer renderer;
     public PlayControl _playControl;
     public PlayControlTwo _playControlTwo;
     public PlayControlThree _playControlThree;
     public PlayControlFour _playControlFour;
     public PlayControlFive _playControlFive;
+    public MoveBarrel _moveBarrel;
+    public MoveBarrelTwo _moveBarrelTwo;
+    public MoveBarrelThree _moveBarrelThree;
 
     public void start()
     {
@@ -27,6 +33,10 @@ public class AllPlayerController : MonoBehaviour
         playerThreeSelected = false;
         playerFourSelected = false;
         playerFiveSelected = false;
+        barrelOneSelected = false;
+        barrelTwoSelected = true;
+        barrelThreeSelected = true;
+        
     }
 
     // Update is called once per frame
@@ -40,7 +50,6 @@ public class AllPlayerController : MonoBehaviour
             {
                 if(hit.collider.CompareTag("PlayerOne") && playerOneSelected)
                 {
-                    Debug.Log("Player One is now deselcted");
                     _playControl.deselectPlayer();
                     playerOneSelected = false;
                 }
@@ -51,7 +60,6 @@ public class AllPlayerController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("PlayerTwo") && playerTwoSelected)
                 {
-                    Debug.Log("Player Two is now deselcted");
                     _playControlTwo.deselectPlayer();
                     playerTwoSelected = false;
                 }
@@ -62,7 +70,6 @@ public class AllPlayerController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("PlayerThree") && playerThreeSelected)
                 {
-                    Debug.Log("Player Three is now deselected");
                     _playControlThree.deselectPlayer();
                     playerThreeSelected = false;
                 }
@@ -73,7 +80,6 @@ public class AllPlayerController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("PlayerFour") && playerFourSelected)
                 {
-                    Debug.Log("Player Four is now deselected");
                     _playControlFour.deselectPlayer();
                     playerFourSelected = false;
                     Debug.Log("player Two is now " + playerThreeSelected);
@@ -85,7 +91,6 @@ public class AllPlayerController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("PlayerFive") && playerFiveSelected)
                 {
-                    Debug.Log("Player Five is now deselected");
                     _playControlFive.deselectPlayer();
                     playerFiveSelected = false;
                 }
@@ -93,6 +98,37 @@ public class AllPlayerController : MonoBehaviour
                 {
                     _playControlFive.setPlayer();
                     playerFiveSelected = true;
+                }
+                if (hit.collider.CompareTag("BarrelOne") && barrelOneSelected)
+                {
+                    _moveBarrel.deselectBarrel();
+                    barrelOneSelected = false;
+                }
+                else if (hit.collider.CompareTag("BarrelOne") && !barrelOneSelected)
+                {
+                    _moveBarrel.selectBarrel();
+                    barrelOneSelected = true;
+                }
+                if (hit.collider.CompareTag("BarrelTwo") && barrelTwoSelected)
+                {
+                    _moveBarrelTwo.deselectBarrel();
+                    barrelTwoSelected = false;
+                }
+                else if (hit.collider.CompareTag("BarrelTwo") && !barrelTwoSelected)
+                {
+                    Debug.Log("hit collide has detected");
+                    _moveBarrelTwo.selectBarrel();
+                    barrelTwoSelected = true;
+                }
+                if (hit.collider.CompareTag("BarrelThree") && barrelThreeSelected)
+                {
+                    _moveBarrelThree.deselectBarrel();
+                    barrelThreeSelected = false;
+                }
+                else if (hit.collider.CompareTag("BarrelThree") && !barrelThreeSelected)
+                {
+                    _moveBarrelThree.selectBarrel();
+                    barrelThreeSelected = true;
                 }
             }
         }
