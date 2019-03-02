@@ -72,6 +72,8 @@ public class Controller : MonoBehaviour
             {
                 running();
             }
+			
+			
     }
 
     void turnRight()
@@ -113,8 +115,6 @@ public class Controller : MonoBehaviour
 
     void running()
     {
-        if (controller.isGrounded)
-        {
             if (Input.GetKey(KeyCode.G))
             {
                 if (anim.GetBool("jumping") == true)
@@ -137,7 +137,7 @@ public class Controller : MonoBehaviour
                 anim.SetInteger("condition", 0); // stops walk animation
                 moveDir = new Vector3(0, 0, 0);
             }
-        }
+        
         rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rot, 0);
         moveDir.y -= gravity * Time.deltaTime;
