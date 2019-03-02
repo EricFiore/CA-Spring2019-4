@@ -73,6 +73,28 @@ public class Controller : MonoBehaviour
                 running();
             }
 			
+			if (Input.GetKey(KeyCode.E))
+            {
+                SFRight();
+            }
+			
+			if (Input.GetKey(KeyCode.Q))
+            {
+                SFLeft();
+            }
+			
+			if (Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.W))
+            {
+                SFRight();
+				Walking();
+            }
+			
+			if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.W))
+            {
+                SFLeft();
+				Walking();
+            }
+			
 			
     }
 
@@ -143,7 +165,70 @@ public class Controller : MonoBehaviour
         moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);
     }
+	
+	
+	void SFRight()
+    {
+            if (Input.GetKey(KeyCode.E))
+            {
+                if (anim.GetBool("jumping") == true)
+                {
+                    return;
+                }
+                else if (anim.GetBool("jumping") == false)
+                {
+                    //anim.SetBool("running", true);
+                    anim.SetInteger("condition", 3); //invokes walk animation
+                    moveDir = new Vector3(1, 0, 0);
+                    moveDir *= runningSpeed;
+                    moveDir = transform.TransformDirection(moveDir);
+                }
+            }
 
+            else
+            {
+                //anim.SetBool("running", false);
+                anim.SetInteger("condition", 0); // stops walk animation
+                moveDir = new Vector3(0, 0, 0);
+            }
+        
+        rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
+        transform.eulerAngles = new Vector3(0, rot, 0);
+        moveDir.y -= gravity * Time.deltaTime;
+        controller.Move(moveDir * Time.deltaTime);
+    }
+		
+	void SFLeft()
+    {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                if (anim.GetBool("jumping") == true)
+                {
+                    return;
+                }
+                else if (anim.GetBool("jumping") == false)
+                {
+                    //anim.SetBool("running", true);
+                    anim.SetInteger("condition", 3); //invokes walk animation
+                    moveDir = new Vector3(-1, 0, 0);
+                    moveDir *= runningSpeed;
+                    moveDir = transform.TransformDirection(moveDir);
+                }
+            }
+
+            else
+            {
+                //anim.SetBool("running", false);
+                anim.SetInteger("condition", 0); // stops walk animation
+                moveDir = new Vector3(0, 0, 0);
+            }
+        
+        rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
+        transform.eulerAngles = new Vector3(0, rot, 0);
+        moveDir.y -= gravity * Time.deltaTime;
+        controller.Move(moveDir * Time.deltaTime);
+    }
+	
     void Walking()
     {
             if (Input.GetKey(KeyCode.W))
