@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,11 +44,55 @@ public class Controller : MonoBehaviour
 					Jump();
 				}
 			}
+            if(Input.GetKey(KeyCode.A))
+            {
+                turnLeft();
+            }
+            if (Input.GetKeyUp(KeyCode.A) && anim.GetBool("turnLeft"))
+            {
+                stopTurningLeft();
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                turnRight();
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                stopTurningRight();
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                walkBackwards();
+            }
 			
 		}
 	}
-	
-	void Jump()
+
+    private void turnRight()
+    {
+        anim.SetBool("turnRight", true);
+        anim.SetInteger("condition", 4);
+    }
+
+    private void stopTurningRight()
+    {
+        anim.SetBool("turnRight", false);
+        anim.SetInteger("condition", 0);
+    }
+
+    private void turnLeft()
+    {
+        anim.SetBool("turnLeft", true);
+        anim.SetInteger("condition", 3);
+    }
+
+    private void stopTurningLeft()
+    {
+        anim.SetBool("turnLeft", false);
+        anim.SetInteger("condition", 0);
+    }
+
+    void Jump()
 	{
 		StartCoroutine(JumpRoutine());
 	}
@@ -56,7 +101,7 @@ public class Controller : MonoBehaviour
 	{
 		anim.SetBool("jumping", true);
 		anim.SetInteger("condition", 2);
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.20f);
 		anim.SetInteger("condition", 0);
 		anim.SetBool("jumping",false);
 	}
@@ -92,6 +137,23 @@ public class Controller : MonoBehaviour
 		rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
 		transform.eulerAngles = new Vector3(0,rot,0);
 		moveDir.y -= gravity * Time.deltaTime;
+        Debug.Log("MovDir " + moveDir);
 		controller.Move(moveDir * Time.deltaTime);
-	}	
+	}
+
+    private void walkBackwards()
+    {
+        if (anim.GetBool("jumping"))
+        {
+            return;
+        }
+        else
+        {
+            anim.SetBool("walking", true);
+            anim.SetInteger("condition", 4);
+            moveDir = new Vector3(0, 0, -1);
+            moveDir *= speed;
+            moveDir = transform.TransformDirection(moveDir);
+        }
+    }
 }
