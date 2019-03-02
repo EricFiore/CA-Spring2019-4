@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e871036a303c6b24da2d8e50b61153c6
+guid: 94a73d8e3b152914fbfb22ae612802d5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -137,7 +137,7 @@ ModelImporter:
     400128: Beta:Spine1
     400130: Beta:Spine2
     400132: //RootNode
-    7400000: mutant_run
+    7400000: mutant_walking
     9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
@@ -169,10 +169,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mutant_run
+      name: mutant_walking
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
