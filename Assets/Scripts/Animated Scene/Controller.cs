@@ -267,7 +267,7 @@ public class Controller : MonoBehaviour
         else
         {
             anim.SetBool("walkingBackwards", true);
-            anim.SetInteger("condition", 5);
+			anim.SetInteger("condition", 5);
             moveDir = new Vector3(0, 0, -1);
             moveDir *= speed;
             moveDir = transform.TransformDirection(moveDir);
