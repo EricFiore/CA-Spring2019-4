@@ -10,6 +10,15 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("Playground");
     }
 	
+	public void SC1()
+    {
+        SceneManager.LoadScene("Animation");
+    }
+	public void SC2()
+    {
+        SceneManager.LoadScene("AnimationPartTwo");
+    }
+
 	public void Quit()
 	{
 		Application.Quit();
