@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AllPlayerMove : MonoBehaviour
+public class B2P2PlayerController : MonoBehaviour
 {
     private Ray shootRay;
     private RaycastHit destination;
@@ -11,7 +11,7 @@ public class AllPlayerMove : MonoBehaviour
     private bool runPlayer;
     private Vector3 destinationPoint;
 
-    public PlayOneMove _playOneMove;
+    public B2P2PlayerMove _B2P2PlayerMove;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class AllPlayerMove : MonoBehaviour
                 {
                     playerOneSelected = true;
                     runPlayer = false;
-                    _playOneMove.setPlayer();
+                    _B2P2PlayerMove.setPlayer();
                 }
                 else if (hit.collider.CompareTag("PlayerOne") && !runPlayer)
                 {
@@ -48,7 +48,7 @@ public class AllPlayerMove : MonoBehaviour
         {
             playerOneSelected = false;
             runPlayer = false;
-            _playOneMove.deselectPlayer();
+            _B2P2PlayerMove.deselectPlayer();
         }
         else if (Input.GetButtonDown("Fire2"))
         {
@@ -59,20 +59,22 @@ public class AllPlayerMove : MonoBehaviour
                 destinationPoint = hit.point;
                 if (hit.collider.CompareTag("Floor") && playerOneSelected)
                 {
-                    _playOneMove.movePlayer(hit);
+                    Debug.Log("floor and walk");
+                    _B2P2PlayerMove.movePlayer(hit);
                 }
                 else if (hit.collider.CompareTag("Floor") && runPlayer)
                 {
-                    _playOneMove.runPlayer(hit);
+                    Debug.Log("floor and run");
+                    _B2P2PlayerMove.runPlayer(hit);
                 }
             }
         }
-            if (_playOneMove.transform.position.x == destinationPoint.x)
+        if (_B2P2PlayerMove.transform.position.x == destinationPoint.x)
+        {
+            if (_B2P2PlayerMove.transform.position.z == destinationPoint.z)
             {
-                if (_playOneMove.transform.position.z == destinationPoint.z)
-                {
-                    _playOneMove.deselectPlayer();
-                }
+                _B2P2PlayerMove.deselectPlayer();
             }
+        }
     }
 }
