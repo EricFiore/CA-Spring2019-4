@@ -23,7 +23,6 @@ public class CameraController2 : MonoBehaviour
 
         if (updatedZoom < zoom)
         {
-            Debug.Log("Zoom has changed " + (zoom - updatedZoom));
             zoom = updatedZoom;
             pos.y -= 2.0f * Time.deltaTime;
             if (pos.y < 1.0f)
@@ -33,8 +32,8 @@ public class CameraController2 : MonoBehaviour
         {
             zoom = updatedZoom;
             pos.y += 2.0f * Time.deltaTime;
-            if (pos.y > 3.5f)
-                pos.y = 3.5f;
+            if (pos.y > 10.5f)
+                pos.y = 10.5f;
         }
 
 
