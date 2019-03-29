@@ -17,6 +17,7 @@ TagManager:
   - jumpWall
   - idleObject
   - roomOneGoal
+  - rocks
   layers:
   - Default
   - TransparentFX
